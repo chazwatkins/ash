@@ -640,8 +640,6 @@ defmodule Ash.Type do
     evaluate_operator: 1
   ]
 
-  @builtin_types Registry.builtin_types()
-
   @doc false
   def builtin_types, do: Registry.builtin_types()
 
@@ -649,8 +647,7 @@ defmodule Ash.Type do
   def short_names, do: Registry.short_names()
 
   @doc "Returns true if the type is an ash builtin type"
-  def builtin?(type) when type in @builtin_types, do: true
-  def builtin?(_), do: false
+  def builtin?(type), do: type in Registry.builtin_types()
 
   @doc "Returns true if the type is an embedded resource"
   def embedded_type?({:array, type}) do
